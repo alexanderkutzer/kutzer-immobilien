@@ -57,19 +57,19 @@
 </div></footer>
 
 <script>
-var form = document.getElementById('form'), status = document.getElementById('status');
+var form = document.getElementById('form'), note = document.getElementById('status');
 form.addEventListener('submit', function (e) {
   e.preventDefault();
-  status.textContent = 'Wird gesendet …';
+  note.textContent = 'Wird gesendet …';
   fetch(form.action, {method: 'POST', headers: {Accept: 'application/json'}, body: new FormData(form)})
     .then(function (r) { return r.json(); })
     .then(function (d) {
       if (!d.success) throw 0;
       form.reset();
-      status.textContent = 'Danke, Ihre Nachricht ist angekommen. Ich melde mich bei Ihnen.';
+      note.textContent = 'Danke, Ihre Nachricht ist angekommen. Ich melde mich bei Ihnen.';
     })
     .catch(function () {
-      status.textContent = 'Das hat leider nicht geklappt. Bitte schreiben Sie mir per E-Mail oder rufen Sie an.';
+      note.textContent = 'Das hat leider nicht geklappt. Bitte schreiben Sie mir per E-Mail oder rufen Sie an.';
     });
 });
 </script>
