@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alexander Kutzer – Ich kaufe Mehrfamilienhäuser in Leipzig</title>
+<meta name="description" content="Ich kaufe privat Mehrfamilienhäuser in Leipzig und Umgebung, auch mit Leerstand oder Sanierungsbedarf, und behalte sie langfristig.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div class="wrap">
+  <span class="name">Alexander Kutzer</span>
+  <a class="tel" href="tel:+4917639882723">0176 39882723</a>
+</div></header>
+
+<main class="wrap">
+  <h1>Ich kaufe Mehrfamilienhäuser in Leipzig und Umgebung.</h1>
+  <p class="lead">Privat und diskret. Auch mit Leerstand oder Sanierungsbedarf, und gern bevor ein Haus öffentlich angeboten wird.</p>
+  <p><a class="btn" href="#kontakt">Haus anbieten</a></p>
+
+  <h2>Was ich suche</h2>
+  <ul>
+    <li>Mehrfamilienhäuser, auch Wohn- und Geschäftshäuser</li>
+    <li>in Leipzig und Umgebung</li>
+    <li>vermietet oder mit Leerstand und Sanierungsbedarf, beides ist interessant</li>
+    <li>gern auch mit Entwicklungspotenzial</li>
+  </ul>
+
+  <h2>Wie ich kaufe</h2>
+  <p>Ich bin Alexander Kutzer aus Leipzig. Ich kaufe privat, entscheide selbst und möchte die Häuser langfristig behalten. Sie sprechen immer direkt mit mir. Ich melde mich schnell zurück und sage Ihnen klar, ob ein Haus für mich passt. Ihre Angaben behandle ich vertraulich.</p>
+
+  <h2>Für Makler, Hausverwaltungen und Verwalter</h2>
+  <p>Haben Sie etwas Passendes, oder kennen Sie Eigentümer, die über einen Verkauf nachdenken? Dann schreiben Sie mir kurz oder rufen Sie an. Ich freue mich auch, wenn Sie mich auf Ihre Interessentenliste setzen.</p>
+
+  <h2 id="kontakt">Kontakt</h2>
+  <div class="card">
+    <p>Telefon: <a href="tel:+4917639882723">0176 39882723</a> (bei Nichterreichen einfach auf die Mailbox sprechen, ich rufe zurück)<br>
+    E-Mail: <a href="mailto:kutzer.immobilien@gmail.com">kutzer.immobilien@gmail.com</a></p>
+    <form id="form" action="https://api.web3forms.com/submit" method="post">
+      <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY">
+      <input type="hidden" name="subject" value="Neue Nachricht über die Webseite">
+      <input type="hidden" name="from_name" value="Webseite Kutzer">
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+      <label for="n">Name</label><input id="n" name="name" autocomplete="name" required>
+      <label for="t">Telefon oder E-Mail</label><input id="t" name="kontakt" required>
+      <label for="o">Ihre Nachricht (zum Beispiel Ort, Anzahl Wohnungen, kurz zum Zustand)</label>
+      <textarea id="o" name="nachricht" rows="4"></textarea>
+      <label class="check"><input type="checkbox" name="einwilligung" value="ja" required> <span>Ich bin einverstanden, dass meine Angaben zur Beantwortung meiner Nachricht verwendet werden. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</span></label>
+      <p style="margin-top:16px"><button class="btn" type="submit">Nachricht senden</button></p>
+      <p id="status" role="status"></p>
+    </form>
+  </div>
+</main>
+
+<footer><div class="wrap">
+  <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
+</div></footer>
+
+<script>
+var form = document.getElementById('form'), status = document.getElementById('status');
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  status.textContent = 'Wird gesendet …';
+  fetch(form.action, {method: 'POST', headers: {Accept: 'application/json'}, body: new FormData(form)})
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      if (!d.success) throw 0;
+      form.reset();
+      status.textContent = 'Danke, Ihre Nachricht ist angekommen. Ich melde mich bei Ihnen.';
+    })
+    .catch(function () {
+      status.textContent = 'Das hat leider nicht geklappt. Bitte schreiben Sie mir per E-Mail oder rufen Sie an.';
+    });
+});
+</script>
+</body>
+</html>
